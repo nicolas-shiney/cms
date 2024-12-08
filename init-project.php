@@ -2,7 +2,7 @@
 /**
  * Created by Vim.
  * User: nicolas
- * Date: 2024-12-8
+ * Date: 2024-12-08
  * Time: 15:49
  */
 
@@ -34,15 +34,15 @@ if (!file_exists($composerJson)) {
     echo $console_message->colorText("Installing symfony/yaml...\n", "yellow");
     exec('composer require symfony/yaml', $output, $returnVar);
     if ($returnVar !== 0) {
-        die($console_message->colorText("Error: Failed to install dependencies.\n", "red") . PHP_EOL . implode("\n", $output));
+        die($console_message->colorText("Error: Failed to install dependencies - symfony/yaml.\n", "red") . PHP_EOL . implode("\n", $output));
     }
     echo $console_message->colorText("Symfony/yaml installed successfully.\n", "cyan");
 
     // Run composer require to fetch league/climate
     echo $console_message->colorText("Installing league/climate...\n", "yellow");
-    exec('composer require league/auiea', $output, $returnVar);
+    exec('composer require league/climate', $output, $returnVar);
     if ($returnVar !== 0) {
-        die($console_message->colorText("Error: Failed to install dependencies.\n", "red") . PHP_EOL . implode("\n", $output));
+        die($console_message->colorText("Error: Failed to install dependencies - league/climate.\n", "red") . PHP_EOL . implode("\n", $output));
     }
     echo $console_message->colorText("league/climate installed successfully.\n", "cyan");
 }
@@ -82,5 +82,13 @@ if (isset($yaml['folders'])) {
 } else {
     echo "No folders defined in the YAML file.\n";
 }
+
+require 'app/utilities/MessageHandler.php';
+
+// Initialize the MessageHandler
+$messageHandler = new MessageHandler();
+
+// Display various types of messages
+$messageHandler->info("This is an informational message.");
 
 
