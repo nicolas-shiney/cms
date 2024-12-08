@@ -7,7 +7,7 @@
  */
 
 
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use League\CLImate\CLImate;
 

@@ -9,6 +9,7 @@
 // Create composer.json if it doesn't exist and include Symfony YAML library
 
 require_once "app/utilities/ConsoleColor.php";
+require_once 'app/utilities/FolderStructure.php';
 $console_message = new ConsoleColor();
 
 // Create composer.json if it doesn't exist and include Symfony YAML library
@@ -75,7 +76,7 @@ function createFolderStructure(array $folders, $basePath = __DIR__){
 */
 
 
-require 'FolderStructure.php';
+
 
 // Initialize and create the folder structure
 $folderStructure = new FolderStructure();
