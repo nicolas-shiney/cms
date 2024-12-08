@@ -19,7 +19,7 @@ $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
     // Run composer init to initiate the project
     echo "Initialise composer...\n";
-    exec('composer init --name=simple-cms-name --description="simple cms description" --type=project --no-interaction', $output, $returnVar);
+    exec('composer init --name=simple/cms-name --description="simple cms description" --type=project --no-interaction', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
