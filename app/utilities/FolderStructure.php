@@ -6,8 +6,7 @@
  * Time: 18:21
  */
 
-require_once 'vendor/autoload.php';
-require_once 'MessageHandler.php';
+require_once 'ConsoleColor.php';
 
 /**
  * Class FolderStructure
@@ -15,12 +14,11 @@ require_once 'MessageHandler.php';
  */
 class FolderStructure
 {
-
-private MessageHandler $messageHandler;
+private ConsoleColor $consoleColor;
 
     public function __construct()
     {
-        $this->messageHandler = new MessageHandler();
+        $this->consoleColor = new ConsoleColor();
     }
 
     /**
@@ -37,15 +35,15 @@ private MessageHandler $messageHandler;
             // Create the folder if it doesn't exist
             if (!is_dir($folderPath)) {
                 mkdir($folderPath, 0777, true);
-                $this->messageHandler->success("Created folder: $folderPath");
+                echo $this->consoleColor->colorText("Created folder: $folderPath", "green") . PHP_EOL;
             } else {
-                $this->messageHandler->warning("Folder already exists: $folderPath");
+                echo $this->consoleColor->colorText("Folder already exists: $folderPath", "yellow") . PHP_EOL;
             }
 
             // Set writable permissions if specified
             if (isset($folder['writable']) && $folder['writable'] === true) {
                 chmod($folderPath, 0777);
-                $this->messageHandler->info("Set writable permissions on: $folderPath");
+                echo $this->consoleColor->colorText("Set writable permissions on: $folderPath", "cyan") . PHP_EOL;
             }
 
             // Recursively create child folders
@@ -55,5 +53,3 @@ private MessageHandler $messageHandler;
         }
     }
 }
-
-
