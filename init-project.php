@@ -48,35 +48,8 @@ if (!file_exists($composerJson)) {
     echo $console_message->colorText("league/climate installed successfully.\n", "cyan");
 }
 
-require 'vendor/autoload.php';
-
-
+require_once 'vendor/autoload.php';
 use Symfony\Component\Yaml\Yaml;
-/*
-function createFolderStructure(array $folders, $basePath = __DIR__){
-    foreach ($folders as $folder) {
-        $folderPath = $basePath . DIRECTORY_SEPARATOR . $folder['name'];
-        if (!is_dir($folderPath)) {
-            mkdir($folderPath, 0777, true);
-            echo "Created folder: $folderPath\n";
-        } else {
-            echo "Folder already exists: $folderPath\n";
-        }
-
-        if (isset($folder['writable']) && $folder['writable'] === true) {
-            chmod($folderPath, 0777); // Ensure folder is writable
-            echo "Set writable permissions on: $folderPath\n";
-        }
-
-        if (!empty($folder['children'])) {
-            createFolderStructure($folder['children'], $folderPath);
-        }
-    }
-}
-*/
-
-
-
 
 // Initialize and create the folder structure
 $folderStructure = new FolderStructure();
