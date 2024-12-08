@@ -40,7 +40,7 @@ if (!file_exists($composerJson)) {
 
     // Run composer require to fetch league/climate
     echo $console_message->colorText("Installing league/climate...\n", "yellow");
-    exec('composer require league/climate', $output, $returnVar);
+    exec('composer require league/climatei', $output, $returnVar);
     if ($returnVar !== 0) {
         die($console_message->colorText("Error: Failed to install dependencies.\n", "red") . PHP_EOL . implode("\n", $output));
     }
