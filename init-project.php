@@ -16,7 +16,12 @@
 // Create composer.json if it doesn't exist and include Symfony YAML library
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
+    // Run composer init to initiate the project
+    echo "Initialise composer...\n";
     exec('composer init', $output, $returnVar);
+    if ($returnVar !== 0) {
+        die("Error: Failed to install dependencies.\n" . implode("\n", $output));
+    }
     echo "composer.json created.\n";
 
     // Run composer install to fetch dependencies
@@ -26,9 +31,15 @@ if (!file_exists($composerJson)) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
     echo "Dependencies installed successfully.\n";
+
+    // Run composer require to fetch symfony/yaml
+    echo "Installing symfony/yaml...\n";
+    exec('composer require symfony/yaml', $output, $returnVar);
+    if ($returnVar !== 0) {
+        die("Error: Failed to install dependencies.\n" . implode("\n", $output));
+    }
+    echo "Symfony/yaml installed successfully.\n";
 }
-
-
 
 require 'vendor/autoload.php'; // Assuming you use Symfony's YAML component
 
