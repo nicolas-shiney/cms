@@ -38,7 +38,7 @@ private $colors = [
         return array_keys($this->colors);
     }
 }
-*/
+
 
 /*
 class ConsoleColor {
