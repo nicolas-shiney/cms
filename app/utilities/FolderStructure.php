@@ -6,7 +6,7 @@
  * Time: 18:21
  */
 
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 require_once 'MessageHandler.php';
 
 /**
