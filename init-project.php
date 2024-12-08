@@ -12,7 +12,7 @@
 //composer init
 //composer require symfony/yaml
 
-require "app/utilities/ConsoleColor.php";
+require_once "app/utilities/ConsoleColor.php";
 $console_message = new ConsoleColor();
 
 // Create composer.json if it doesn't exist and include Symfony YAML library

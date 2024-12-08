@@ -6,7 +6,7 @@
  * Time: 17:10
  */
 
-namespace App\utilities;
+//namespace App\utilities;
 
 
 class ConsoleColor {
