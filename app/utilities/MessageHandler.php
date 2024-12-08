@@ -20,7 +20,7 @@ class MessageHandler
     /**
      * @var CLImate The CLImate instance for styled output.
      */
-private CLImate $climate;
+    private CLImate $climate;
 
     /**
      * MessageHandler constructor.
@@ -38,7 +38,7 @@ private CLImate $climate;
      */
     public function info(string $message): void
     {
-        $this->climate->blue()->out($message);
+        $this->climate->cyan()->out($message);
     }
 
     /**
@@ -78,6 +78,6 @@ private CLImate $climate;
      */
     public function title(string $title): void
     {
-        $this->climate->bold()->underline()->cyan()->out($title);
+        $this->climate->bold()->white()->out($title);
     }
 }
