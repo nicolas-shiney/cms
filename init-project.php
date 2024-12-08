@@ -12,16 +12,18 @@
 //composer init
 //composer require symfony/yaml
 
-
+require "app/utilities/ConsoleColor.php";
+$console_message = new ConsoleColor();
 
 // Create composer.json if it doesn't exist and include Symfony YAML library
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
     // Run composer init to initiate the project
-    echo "Initialise composer...\n";
+    echo $console_message->colorText("Initialise composer...", "blue");
+
     exec('composer init --name=simple/cms-name --description="simple cms description" --type=project --no-interaction', $output, $returnVar);
     if ($returnVar !== 0) {
-        die("Error: Failed to install dependencies.\n" . implode("\n", $output));
+        die($console_message->colorText("Error: Failed to install dependencies.", "red") . PHP_EOL . implode("\n", $output));
     }
     echo "composer.json created.\n";
 
@@ -40,9 +42,18 @@ if (!file_exists($composerJson)) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
     echo "Symfony/yaml installed successfully.\n";
+
+    // Run composer require to fetch league/climate
+    echo "Installing symfony/yaml...\n";
+    exec('composer require league/climate', $output, $returnVar);
+    if ($returnVar !== 0) {
+        die("Error: Failed to install dependencies.\n" . implode("\n", $output));
+    }
+    echo "Symfony/yaml installed successfully.\n";
 }
 
-require 'vendor/autoload.php'; // Assuming you use Symfony's YAML component
+require 'vendor/autoload.php';
+
 
 use Symfony\Component\Yaml\Yaml;
 
@@ -77,14 +88,4 @@ if (isset($yaml['folders'])) {
     echo "No folders defined in the YAML file.\n";
 }
 
-// Move folder-structure.yaml to its final destination
-$newYamlPath = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'folder-structure.yaml';
-if (!is_dir(dirname($newYamlPath))) {
-    mkdir(dirname($newYamlPath), 0777, true);
-    echo "Created config directory.\n";
-}
-if (rename($yamlFilePath, $newYamlPath)) {
-    echo "Moved $yamlFilePath to $newYamlPath\n";
-} else {
-    echo "Failed to move $yamlFilePath to $newYamlPath\n";
-}
+
