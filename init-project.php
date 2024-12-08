@@ -13,12 +13,13 @@
 //composer require symfony/yaml
 
 
+
 // Create composer.json if it doesn't exist and include Symfony YAML library
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
     // Run composer init to initiate the project
     echo "Initialise composer...\n";
-    exec('composer init', $output, $returnVar);
+    exec('composer init --name=simple-cms-name --description="simple cms description" --type=project --no-interaction', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
@@ -68,7 +69,7 @@ function createFolderStructure(array $folders, $basePath = __DIR__)
 }
 
 // Load the YAML file
-$yamlFilePath = 'folder-structure.yaml';
+$yamlFilePath = 'config/folder-structure.yaml';
 $yaml = Yaml::parseFile($yamlFilePath);
 if (isset($yaml['folders'])) {
     createFolderStructure($yaml['folders']);
