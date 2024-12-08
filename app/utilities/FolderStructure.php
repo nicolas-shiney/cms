@@ -35,7 +35,9 @@ private ConsoleColor $consoleColor;
             // Create the folder if it doesn't exist
             if (!is_dir($folderPath)) {
                 mkdir($folderPath, 0777, true);
-                echo $this->consoleColor->colorText("Created folder: $folderPath", "green") . PHP_EOL;
+                // echo $this->consoleColor->colorText("Created folder: $folderPath", "green") . PHP_EOL;
+                echo $this->consoleColor->colorText("Created folder: ", "white") . PHP_EOL;
+                echo $this->consoleColor->colorText($folderPath, "green") . PHP_EOL;
             } else {
                 echo $this->consoleColor->colorText("Folder already exists: $folderPath", "yellow") . PHP_EOL;
             }
