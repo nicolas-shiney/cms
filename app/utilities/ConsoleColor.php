@@ -27,6 +27,7 @@ class ConsoleColor
         'magenta' => "\033[35m",
         'cyan' => "\033[36m",
         'white' => "\033[37m",
+        'white_bold' => "\033[1;37m",
         'reset' => "\033[0m",
     ];
 

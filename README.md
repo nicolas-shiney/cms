@@ -1,9 +1,30 @@
-# cms
+# CMS Project Setup
 
-A simple CMS base on smarty
+## Quick Start
 
-Is the push working?
-It seems like it.
+To quickly set up the project, follow these steps:
 
-Sun Dec  8 03:32:19 PM +04 2024
-Sun Dec  8 03:33:38 PM +04 2024
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nicolas-shiney/cms.git .
+   ```
+
+2. Run the project initialization script:
+   ```bash
+   php init-project.php
+   ```
+
+This will configure the project, set up the required folder structure, and prepare everything for development.
+
+## Requirements
+
+- PHP 8.0 or higher
+- Composer installed
+
+## Features
+
+- Automatic folder structure creation
+- Configurable via `config/folder-structure.yaml` before or after running `php init-project.php`
+- Colorized console output for better readability during setup
+
+For additional details or troubleshooting, refer to the project documentation or contact support. Enjoy coding! 🚀
