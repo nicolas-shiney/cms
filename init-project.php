@@ -91,7 +91,7 @@ if (isset($yaml['folders'])) {
     /** createFolderStructure($yaml['folders']); */
     // Initialize and create the folder structure
     $folderStructure = new FolderStructure();
-    $folderStructure->create($folders);
+    $folderStructure->create($yaml['folders']);
 } else {
     echo "No folders defined in the YAML file.\n";
 }
