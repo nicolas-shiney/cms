@@ -20,6 +20,7 @@ class MessageHandler
     /**
      * @var CLImate The CLImate instance for styled output.
      */
+//noinspection PhpUndefinedClassInspection
     private CLImate $climate;
 
     /**
