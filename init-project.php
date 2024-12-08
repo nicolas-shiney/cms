@@ -19,16 +19,16 @@ $console_message = new ConsoleColor();
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
     // Run composer init to initiate the project
-    echo $console_message->colorText("Initialise composer...", "blue");
+    echo $console_message->colorText("Initialise composer...\n", "cyan");
 
     exec('composer init --name=simple/cms-name --description="simple cms description" --type=project --no-interaction', $output, $returnVar);
     if ($returnVar !== 0) {
-        die($console_message->colorText("Error: Failed to install dependencies.", "red") . PHP_EOL . implode("\n", $output));
+        die($console_message->colorText("Error: Failed to install dependencies.\n", "red") . PHP_EOL . implode("\n", $output));
     }
     echo "composer.json created.\n";
 
     // Run composer install to fetch dependencies
-    echo $console_message->colorText("Installing dependencies...", "blue");
+    echo $console_message->colorText("Installing dependencies...\n", "cyan");
     exec('composer install', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
@@ -36,7 +36,7 @@ if (!file_exists($composerJson)) {
     echo "Dependencies installed successfully.\n";
 
     // Run composer require to fetch symfony/yaml
-    echo $console_message->colorText("Installing symfony/yaml...", "blue");
+    echo $console_message->colorText("Installing symfony/yaml...\n", "cyan");
     exec('composer require symfony/yaml', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
@@ -44,7 +44,7 @@ if (!file_exists($composerJson)) {
     echo "Symfony/yaml installed successfully.\n";
 
     // Run composer require to fetch league/climate
-    echo $console_message->colorText("Installing league/climate...", "blue");
+    echo $console_message->colorText("Installing league/climate...\n", "cyan");
     exec('composer require league/climate', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
