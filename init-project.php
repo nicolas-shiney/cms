@@ -11,6 +11,15 @@
 require_once "app/utilities/ConsoleColor.php";
 $console_message = new ConsoleColor();
 
+require_once 'app/utilities/MessageHandler.php';
+
+// Initialize the MessageHandler
+$messageHandler = new MessageHandler();
+
+// Display various types of messages
+$messageHandler->info("This is an informational message.");
+
+
 // Create composer.json if it doesn't exist and include Symfony YAML library
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
@@ -83,12 +92,5 @@ if (isset($yaml['folders'])) {
     echo "No folders defined in the YAML file.\n";
 }
 
-require 'app/utilities/MessageHandler.php';
-
-// Initialize the MessageHandler
-$messageHandler = new MessageHandler();
-
-// Display various types of messages
-$messageHandler->info("This is an informational message.");
 
 
