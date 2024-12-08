@@ -11,15 +11,6 @@
 require_once "app/utilities/ConsoleColor.php";
 $console_message = new ConsoleColor();
 
-require_once 'app/utilities/MessageHandler.php';
-
-// Initialize the MessageHandler
-$messageHandler = new MessageHandler();
-
-// Display various types of messages
-$messageHandler->info("This is an informational message.");
-
-
 // Create composer.json if it doesn't exist and include Symfony YAML library
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
@@ -60,9 +51,8 @@ require 'vendor/autoload.php';
 
 
 use Symfony\Component\Yaml\Yaml;
-
-function createFolderStructure(array $folders, $basePath = __DIR__)
-{
+/*
+function createFolderStructure(array $folders, $basePath = __DIR__){
     foreach ($folders as $folder) {
         $folderPath = $basePath . DIRECTORY_SEPARATOR . $folder['name'];
         if (!is_dir($folderPath)) {
@@ -82,12 +72,25 @@ function createFolderStructure(array $folders, $basePath = __DIR__)
         }
     }
 }
+*/
+
+
+require 'FolderStructure.php';
+
+// Initialize and create the folder structure
+$folderStructure = new FolderStructure();
+//$folderStructure->create($folders);
+
+
 
 // Load the YAML file
 $yamlFilePath = 'config/folder-structure.yaml';
 $yaml = Yaml::parseFile($yamlFilePath);
 if (isset($yaml['folders'])) {
-    createFolderStructure($yaml['folders']);
+    /** createFolderStructure($yaml['folders']); */
+    // Initialize and create the folder structure
+    $folderStructure = new FolderStructure();
+    $folderStructure->create($folders);
 } else {
     echo "No folders defined in the YAML file.\n";
 }
