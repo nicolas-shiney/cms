@@ -7,21 +7,16 @@
  */
 
 // Create composer.json if it doesn't exist and include Symfony YAML library
+
+//composer init
+//composer init
+//composer require symfony/yaml
+
+
+// Create composer.json if it doesn't exist and include Symfony YAML library
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
-    echo "Creating composer.json with Symfony YAML dependency...\n";
-    $composerContent = [
-        "name" => "Simple CMS",
-        "description" => "Project setup with YAML for folder creation",
-        "type" => "project",
-        "require" => [
-            "symfony/yaml" => "^6.0"
-        ],
-        "autoload" => [
-            "psr-4" => ["App\\" => "src/"]
-        ]
-    ];
-    file_put_contents($composerJson, json_encode($composerContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+    exec('composer init', $output, $returnVar);
     echo "composer.json created.\n";
 
     // Run composer install to fetch dependencies
@@ -32,6 +27,8 @@ if (!file_exists($composerJson)) {
     }
     echo "Dependencies installed successfully.\n";
 }
+
+
 
 require 'vendor/autoload.php'; // Assuming you use Symfony's YAML component
 
