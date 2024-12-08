@@ -8,10 +8,6 @@
 
 // Create composer.json if it doesn't exist and include Symfony YAML library
 
-//composer init
-//composer init
-//composer require symfony/yaml
-
 require_once "app/utilities/ConsoleColor.php";
 $console_message = new ConsoleColor();
 
@@ -19,37 +15,36 @@ $console_message = new ConsoleColor();
 $composerJson = 'composer.json';
 if (!file_exists($composerJson)) {
     // Run composer init to initiate the project
-    echo $console_message->colorText("Initialise composer...\n", "cyan");
-
+    echo $console_message->colorText("Initialise composer...\n", "yellow");
     exec('composer init --name=simple/cms-name --description="simple cms description" --type=project --no-interaction', $output, $returnVar);
     if ($returnVar !== 0) {
         die($console_message->colorText("Error: Failed to install dependencies.\n", "red") . PHP_EOL . implode("\n", $output));
     }
-    echo "composer.json created.\n";
+    echo $console_message->colorText("composer.json created.\n", "cyan");
 
     // Run composer install to fetch dependencies
-    echo $console_message->colorText("Installing dependencies...\n", "cyan");
+    echo $console_message->colorText("Installing dependencies...\n", "yellow");
     exec('composer install', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
-    echo "Dependencies installed successfully.\n";
+    echo $console_message->colorText("Dependencies installed successfully.\n", "cyan");
 
     // Run composer require to fetch symfony/yaml
-    echo $console_message->colorText("Installing symfony/yaml...\n", "cyan");
+    echo $console_message->colorText("Installing symfony/yaml...\n", "yellow");
     exec('composer require symfony/yaml', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
-    echo "Symfony/yaml installed successfully.\n";
+    echo $console_message->colorText("Symfony/yaml installed successfully.\n", "cyan");
 
     // Run composer require to fetch league/climate
-    echo $console_message->colorText("Installing league/climate...\n", "cyan");
+    echo $console_message->colorText("Installing league/climate...\n", "yellow");
     exec('composer require league/climate', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
-    echo "league/climate installed successfully.\n";
+    echo $console_message->colorText("league/climate installed successfully.\n", "cyan");
 }
 
 require 'vendor/autoload.php';
