@@ -28,7 +28,7 @@ if (!file_exists($composerJson)) {
     echo "composer.json created.\n";
 
     // Run composer install to fetch dependencies
-    echo "Installing dependencies...\n";
+    echo $console_message->colorText("Installing dependencies...", "blue");
     exec('composer install', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
@@ -36,7 +36,7 @@ if (!file_exists($composerJson)) {
     echo "Dependencies installed successfully.\n";
 
     // Run composer require to fetch symfony/yaml
-    echo "Installing symfony/yaml...\n";
+    echo $console_message->colorText("Installing symfony/yaml...", "blue");
     exec('composer require symfony/yaml', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
@@ -44,12 +44,12 @@ if (!file_exists($composerJson)) {
     echo "Symfony/yaml installed successfully.\n";
 
     // Run composer require to fetch league/climate
-    echo "Installing symfony/yaml...\n";
+    echo $console_message->colorText("Installing league/climate...", "blue");
     exec('composer require league/climate', $output, $returnVar);
     if ($returnVar !== 0) {
         die("Error: Failed to install dependencies.\n" . implode("\n", $output));
     }
-    echo "Symfony/yaml installed successfully.\n";
+    echo "league/climate installed successfully.\n";
 }
 
 require 'vendor/autoload.php';
