@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "symfony/yaml": "^6.4",
-        "league/climate": "^3.10"
+        "league/climate": "^3.10",
+        "smarty/smarty": "^5.4"
     },
     "autoload": {
         "psr-4": {

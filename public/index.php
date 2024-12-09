@@ -8,13 +8,6 @@
 
 require '../vendor/autoload.php';
 
-
-/*
-require_once '../app/services/Router.php';
-require_once '../app/controllers/HomeController.php';
-require_once '../app/controllers/AboutController.php';
-require_once '../app/controllers/ContactController.php';
-*/
 // Initialize the router
 use App\Services\Router;
 
