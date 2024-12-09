@@ -26,6 +26,10 @@ class ComposerStaticInit87a766ee102a70a56c6f317023721a44
         array (
             'League\\CLImate\\' => 15,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -48,6 +52,10 @@ class ComposerStaticInit87a766ee102a70a56c6f317023721a44
         'League\\CLImate\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/climate/src',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 

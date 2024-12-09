@@ -5,24 +5,20 @@
  * Date: 2024-12-08
  * Time: 18:11
  */
-//noinspection PhpUndefinedClassInspection
 
-require_once 'vendor/autoload.php';
+require_once '../../vendor/autoload.php';
 
-use League\CLImate\CLImate;
+
 
 /**
  * Class MessageHandler
  * Provides methods to display styled messages in the console using CLImate.
  */
-//noinspection PhpUndefinedClassInspection
 class MessageHandler
 {
     /**
      * @var CLImate The CLImate instance for styled output.
      */
-    //noinspection PhpUndefinedClassInspection
-    private CLImate $climate;
 
     /**
      * MessageHandler constructor.

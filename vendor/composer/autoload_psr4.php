@@ -11,4 +11,5 @@ return array(
     'Seld\\CliPrompt\\' => array($vendorDir . '/seld/cli-prompt/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
     'League\\CLImate\\' => array($vendorDir . '/league/climate/src'),
+    'App\\' => array($baseDir . '/app'),
 );
