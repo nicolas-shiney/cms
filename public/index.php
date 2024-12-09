@@ -8,23 +8,23 @@
 
 require '../vendor/autoload.php';
 
+
+/*
+require_once '../app/services/Router.php';
+require_once '../app/controllers/HomeController.php';
+require_once '../app/controllers/AboutController.php';
+require_once '../app/controllers/ContactController.php';
+*/
+// Initialize the router
 use App\Services\Router;
 
-if (class_exists(Router::class)) {
-    echo "Router class loaded successfully!";
-} else {
-    echo "Router class not found!";
-}
-
-// Initialize the router
 $router = new Router();
 
-// Register routes
 $router->add('home', 'HomeController@index');
 $router->add('about', 'AboutController@index');
+$router->add('contact', 'ContactController@index');
+
 
 // Get the requested path (default to "home")
 $requestedPath = $_GET['page'] ?? 'home';
-
-// Dispatch the request
 $router->dispatch($requestedPath);

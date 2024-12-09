@@ -3,7 +3,7 @@
         'name' => 'simple/cms-name',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '770bbee2cecac41cfb1da1fba0dc11347dfeb7bb',
+        'reference' => '30ae7fb99c5302658536a7566d890f6604362dfe',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -40,7 +40,7 @@
         'simple/cms-name' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '770bbee2cecac41cfb1da1fba0dc11347dfeb7bb',
+            'reference' => '30ae7fb99c5302658536a7566d890f6604362dfe',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

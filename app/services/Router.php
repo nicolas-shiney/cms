@@ -8,10 +8,16 @@
 
 namespace App\Services;
 
+
 class Router
 {
     // private array $routes = [];
     private $routes = [];
+
+    public function __construct()
+    {
+        echo "Router initialized";
+    }
 
     /**
      * Add a route to the system.
@@ -40,13 +46,18 @@ class Router
         [$controller, $method] = explode('@', $this->routes[$path]);
         $controllerClass = "App\\Controllers\\$controller";
 
-        if (!class_exists($controllerClass) || !method_exists($controllerClass, $method)) {
-            http_response_code(404);
-            echo "404 - Controller or method not found";
+        if (!class_exists($controllerClass)) {
+            echo "Class $controllerClass not found.";
+            return;
+        }
+
+        if (!method_exists($controllerClass, $method)) {
+            echo "Method $method not found in $controllerClass.";
             return;
         }
 
         $controllerInstance = new $controllerClass();
         $controllerInstance->$method();
     }
+
 }

@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class AboutController
+class ContactController
 {
     public function index(): void
     {
-        echo "Welcome to the About Page!";
+        echo "Welcome to the Contact Page!";
     }
 }
