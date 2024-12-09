@@ -11,8 +11,12 @@ namespace App\Views;
 use Smarty\Smarty;
 
 class BaseView
+
 {
-protected Smarty $smarty;
+    /**
+     * @var \Smarty\Smarty
+     */
+    protected $smarty;
 
     public function __construct()
     {
