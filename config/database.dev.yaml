@@ -1,0 +1,6 @@
+host: localhost
+port: 3306
+database: cms_pictures
+username: nicolas
+password: uie
+charset: utf8mb4
