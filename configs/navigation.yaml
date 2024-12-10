@@ -1,0 +1,11 @@
+menu:
+- name: Home
+  path: home
+- name: Post
+  path: post
+- name: Gallery
+  path: gallery
+- name: Contact
+  path: contact
+- name: About
+  path: about

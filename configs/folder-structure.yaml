@@ -8,7 +8,7 @@ folders:
     - name: templates
     - name: cache
   - name: services
-- name: config
+- name: configs
 - name: public
   children:
   - name: assets

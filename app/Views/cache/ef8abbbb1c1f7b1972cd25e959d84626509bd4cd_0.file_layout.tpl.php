@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-10 15:10:30
+/* Smarty version 5.4.2, created on 2024-12-10 17:53:02
   from 'file:layout.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_675821a64243a5_21117246',
+  'unifunc' => 'content_675847becdfa07_89484497',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ef8abbbb1c1f7b1972cd25e959d84626509bd4cd' => 
     array (
       0 => 'layout.tpl',
-      1 => 1733829030,
+      1 => 1733838781,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_675821a64243a5_21117246 (\Smarty\Template $_smarty_tpl) {
+function content_675847becdfa07_89484497 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -53,21 +53,20 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('menu'), 'item');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('item')->value) {
+$foreach0DoElse = false;
+?>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'home') {?>active<?php }?>" href="index.php?page=home">Home</a>
+                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == $_smarty_tpl->getValue('item')['path']) {?>active<?php }?>" href="index.php?page=<?php echo $_smarty_tpl->getValue('item')['path'];?>
+"><?php echo $_smarty_tpl->getValue('item')['name'];?>
+</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'post') {?>active<?php }?>" href="index.php?page=post">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'gallery') {?>active<?php }?>" href="index.php?page=gallery">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'contact') {?>active<?php }?>" href="index.php?page=contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?php if ($_smarty_tpl->getValue('currentPage') == 'about') {?>active<?php }?>" href="index.php?page=aboute">Aboute</a>
-                    </li>
+                <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 </ul>
             </div>
         </div>
@@ -75,7 +74,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     <!-- Main Content -->
     <main class="mt-4">
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1175144599675821a6423b31_41541040', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1898717977675847becdebb3_01090130', "content");
 ?>
 
     </main>
@@ -93,7 +92,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1175144599675
 </html>
 <?php }
 /* {block "content"} */
-class Block_1175144599675821a6423b31_41541040 extends \Smarty\Runtime\Block
+class Block_1898717977675847becdebb3_01090130 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';

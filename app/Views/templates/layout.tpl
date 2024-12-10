@@ -26,21 +26,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                {foreach $menu as $item}
                     <li class="nav-item">
-                        <a class="nav-link {if $currentPage == 'home'}active{/if}" href="index.php?page=home">Home</a>
+                        <a class="nav-link {if $currentPage == $item.path}active{/if}" href="index.php?page={$item.path}">{$item.name}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {if $currentPage == 'post'}active{/if}" href="index.php?page=post">Post</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {if $currentPage == 'gallery'}active{/if}" href="index.php?page=gallery">Gallery</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {if $currentPage == 'contact'}active{/if}" href="index.php?page=contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {if $currentPage == 'about'}active{/if}" href="index.php?page=aboute">Aboute</a>
-                    </li>
+                {/foreach}
                 </ul>
             </div>
         </div>

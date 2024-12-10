@@ -584,7 +584,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap util/config.js
+   * Bootstrap util/configs.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -615,7 +615,7 @@
       return config;
     }
     _mergeConfigObj(config, element) {
-      const jsonConfig = isElement$1(element) ? Manipulator.getDataAttribute(element, 'config') : {}; // try to parse
+      const jsonConfig = isElement$1(element) ? Manipulator.getDataAttribute(element, 'configs') : {}; // try to parse
 
       return {
         ...this.constructor.Default,
@@ -5256,7 +5256,7 @@
         this._templateFactory = new TemplateFactory({
           ...this._config,
           // the `content` var has to be after `this._config`
-          // to override config.content in case of popover
+          // to override configs.content in case of popover
           content,
           extraClass: this._resolvePossibleFunction(this._config.customClass)
         });
@@ -5627,7 +5627,7 @@
     constructor(element, config) {
       super(element, config);
 
-      // this._element is the observablesContainer and config.target the menu links wrapper
+      // this._element is the observablesContainer and configs.target the menu links wrapper
       this._targetLinks = new Map();
       this._observableSections = new Map();
       this._rootElement = getComputedStyle(this._element).overflowY === 'visible' ? null : this._element;

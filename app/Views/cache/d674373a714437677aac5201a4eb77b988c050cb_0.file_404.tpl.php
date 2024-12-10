@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-10 14:58:25
+/* Smarty version 5.4.2, created on 2024-12-10 15:56:14
   from 'file:errors/404.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_67581ed1191827_35129430',
+  'unifunc' => 'content_67582c5ee96a57_09414987',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd674373a714437677aac5201a4eb77b988c050cb' => 
     array (
       0 => 'errors/404.tpl',
-      1 => 1733827249,
+      1 => 1733828527,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_67581ed1191827_35129430 (\Smarty\Template $_smarty_tpl) {
+function content_67582c5ee96a57_09414987 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates/errors';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -48,5 +48,7 @@ $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates/errors';
 >
 </body>
 </html>
+
+
 <?php }
 }

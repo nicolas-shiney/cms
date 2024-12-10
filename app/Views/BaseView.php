@@ -5,9 +5,8 @@
  * Date: 2024-12-09
  * Time: 20:13
  */
-
 namespace App\Views;
-
+use Symfony\Component\Yaml\Yaml;
 use Smarty\Smarty;
 
 class BaseView
@@ -17,16 +16,20 @@ class BaseView
      * @var \Smarty\Smarty
      */
     protected $smarty;
+    protected $baseDir;
 
-    public function __construct()
+    public function __construct(string $baseDir)
     {
-        $this->smarty = new Smarty();
+        $this->baseDir = $baseDir;
+        $this->smarty = new \Smarty\Smarty();
+        $this->smarty->setTemplateDir($this->baseDir . '/app/Views/templates');
+        $this->smarty->setCompileDir($this->baseDir . '/app/Views/cache');
+        $this->smarty->setCacheDir($this->baseDir . '/app/Views/cache');
+        $this->smarty->setConfigDir($this->baseDir . '/app/Views/configs');
 
-        // Set Smarty directories
-        $this->smarty->setTemplateDir(__DIR__ . '/templates');
-        $this->smarty->setCompileDir(__DIR__ . '/cache');
-        $this->smarty->setCacheDir(__DIR__ . '/cache');
-        $this->smarty->setConfigDir(__DIR__ . '/configs/smarty');
+        // Load navigation items from YAML
+        $navConfig = Yaml::parseFile($this->baseDir . '/configs/navigation.yaml');
+        $this->smarty->assign('menu', $navConfig['menu']);
     }
 
     /**
@@ -43,4 +46,5 @@ class BaseView
 
         $this->smarty->display($template);
     }
+
 }
