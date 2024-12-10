@@ -26,7 +26,7 @@ class BaseView
         $this->smarty->setTemplateDir(__DIR__ . '/templates');
         $this->smarty->setCompileDir(__DIR__ . '/cache');
         $this->smarty->setCacheDir(__DIR__ . '/cache');
-        $this->smarty->setConfigDir(__DIR__ . '/configs');
+        $this->smarty->setConfigDir(__DIR__ . '/configs/smarty');
     }
 
     /**

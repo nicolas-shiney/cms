@@ -8,22 +8,12 @@
 
 namespace App\Services;
 
-
 class Router
 {
-    // private array $routes = [];
-    private $routes = [];
-
-    public function __construct()
-    {
-        echo "Router initialized";
-    }
+private $routes = [];
 
     /**
      * Add a route to the system.
-     *
-     * @param string $path The path to match (e.g., "home").
-     * @param string $action The action (e.g., "HomeController@index").
      */
     public function add(string $path, string $action): void
     {
@@ -32,32 +22,32 @@ class Router
 
     /**
      * Dispatch the request to the appropriate controller and method.
-     *
-     * @param string $path The requested path (e.g., "home").
      */
     public function dispatch(string $path): void
     {
-        if (!isset($this->routes[$path])) {
-            http_response_code(404);
-            echo "404 - Page not found";
-            return;
+        foreach ($this->routes as $route => $action) {
+            $regex = preg_replace('/\{(\w+)\}/', '(\d+)', $route); // Convert {param} to regex
+            $regex = '#^' . $regex . '$#'; // Add start and end anchors
+
+            if (preg_match($regex, $path, $matches)) {
+                array_shift($matches); // Remove the full match
+
+                [$controller, $method] = explode('@', $action);
+                $controllerClass = "App\\Controllers\\$controller";
+
+                if (class_exists($controllerClass) && method_exists($controllerClass, $method)) {
+                    $controllerInstance = new $controllerClass();
+                    call_user_func_array([$controllerInstance, $method], $matches);
+                    return;
+                }
+
+                http_response_code(404);
+                echo "Controller or method not found: $controllerClass@$method";
+                return;
+            }
         }
 
-        [$controller, $method] = explode('@', $this->routes[$path]);
-        $controllerClass = "App\\Controllers\\$controller";
-
-        if (!class_exists($controllerClass)) {
-            echo "Class $controllerClass not found.";
-            return;
-        }
-
-        if (!method_exists($controllerClass, $method)) {
-            echo "Method $method not found in $controllerClass.";
-            return;
-        }
-
-        $controllerInstance = new $controllerClass();
-        $controllerInstance->$method();
+        http_response_code(404);
+        echo "404 - Route not found";
     }
-
 }

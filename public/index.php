@@ -16,6 +16,11 @@ $router = new Router();
 $router->add('home', 'HomeController@index');
 $router->add('about', 'AboutController@index');
 $router->add('contact', 'ContactController@index');
+$router->add('galery', 'GaleryController@index');
+
+$router->add('post/{id}', 'PostController@show');
+$router->add('user/{username}', 'UserController@profile');
+
 
 
 // Get the requested path (default to "home")
