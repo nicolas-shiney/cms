@@ -10,8 +10,12 @@ namespace App\Controllers;
 
 class AboutController
 {
-    public function index(): void
+    public function index(array $data = []): void
     {
-        echo "Welcome to the About Page!";
+        $view = new BaseView();
+        $view->render('about.tpl', array_merge($data, [
+            'title' => 'About Us',
+            'content' => 'Here is where you get to know more about us.',
+        ]));
     }
 }

@@ -8,10 +8,16 @@
 
 namespace App\Controllers;
 
+use App\Views\BaseView;
+
 class ContactController
 {
-    public function index(): void
+    public function index(array $data = []): void
     {
-        echo "Welcome to the Contact Page!";
+        $view = new BaseView();
+        $view->render('contact.tpl', array_merge($data, [
+            'title' => 'Contact Us',
+            'content' => 'Feel free to reach out to us using the form below.',
+        ]));
     }
 }

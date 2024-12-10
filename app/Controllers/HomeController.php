@@ -12,13 +12,12 @@ use App\Views\BaseView;
 
 class HomeController
 {
-    public function index(): void
+    public function index(array $data = []): void
     {
         $view = new BaseView();
-        $view->render('home.tpl', [
-            'title' => 'Home Page',
-            'content' => 'Welcome to the Home Page!',
-        ]);
+        $view->render('home.tpl', array_merge($data, [
+            'username' => 'John Doe',
+            'content' => 'Welcome to the CMS!',
+        ]));
     }
 }
-

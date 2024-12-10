@@ -10,8 +10,12 @@ namespace App\Controllers;
 
 class PostController
 {
-    public function show($id): void
+    public function index(array $data = []): void
     {
-        echo "Displaying post with ID: $id";
+        $view = new BaseView();
+        $view->render('post.tpl', array_merge($data, [
+            'title' => 'Post',
+            'content' => 'So much to read here.',
+        ]));
     }
 }
