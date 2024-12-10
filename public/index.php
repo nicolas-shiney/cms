@@ -8,13 +8,19 @@
 
 require '../vendor/autoload.php';
 
-// Initialize the router
 use App\Services\Router;
+use App\Services\Database;
 
 define('BASE_DIR', dirname(__DIR__)); // Base directory of the project
 define('CONFIG_DIR', dirname(__DIR__) . '/configs');
 
-//$view = new BaseView(BASE_DIR);
+$db = new Database('../configs/database.dev.yaml');
+
+// Test query
+$users = $db->fetchAll("SELECT * FROM users");
+
+var_dump($users);
+
 
 $router = new Router();
 

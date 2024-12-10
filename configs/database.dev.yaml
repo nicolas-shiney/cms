@@ -1,6 +1,9 @@
 host: localhost
 port: 3306
-database: cms_pictures
+dbname: cms
 username: nicolas
 password: uie
 charset: utf8mb4
+options:
+  ATTR_DEFAULT_FETCH_MODE: PDO::FETCH_ASSOC
+  ATTR_EMULATE_PREPARES: false
