@@ -15,16 +15,14 @@ $router = new Router();
 
 $router->add('home', 'HomeController@index');
 $router->add('post', 'PostController@index');
-$router->add('galery', 'GaleryController@index');
+$router->add('gallery', 'GalleryController@index');
 $router->add('contact', 'ContactController@index');
 $router->add('about', 'AboutController@index');
-
-
+$router->add('404', 'ErrorController@notFound');
 $router->add('post/{id}', 'PostController@show');
 $router->add('user/{username}', 'UserController@profile');
 
 
-
-// Get the requested path (default to "home")
+// Handle 404 for unmatched routes
 $requestedPage = $_GET['page'] ?? 'home';
-$router->dispatch($requestedPage, ['currentPage' => $requestedPage]);
+$router->dispatch($requestedPage);

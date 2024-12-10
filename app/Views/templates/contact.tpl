@@ -2,8 +2,8 @@
 
 {block name="content"}
     <div class="row">
-        <div class="col-md-8 mx-auto">
-            <h1>Welcome, {$username|default:'Guest'}!</h1>
+        <div class="col">
+            <h1>Welcome, <span class="text-success">{$username|default:'Guest'}</span> on the <span class="text-primary">{$smarty.get.page}</span>!</h1>
             <p>{$content}</p>
         </div>
     </div>

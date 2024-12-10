@@ -20,11 +20,25 @@ private $routes = [];
         $this->routes[$path] = $action;
     }
 
+    /** Check if a route exists. */
+    public function has(string $path): bool
+    {
+        return array_key_exists($path, $this->routes);
+    }
+
     /**
      * Dispatch the request to the appropriate controller and method.
      */
     public function dispatch(string $path, array $extraData = []): void
     {
+        // Prevent infinite loop if '404' route is missing or misconfigured
+        if ($path === '404' && !array_key_exists('404', $this->routes)) {
+            http_response_code(404);
+            echo "404 - Route not configured";
+            return;
+        }
+
+        // Match the route
         foreach ($this->routes as $route => $action) {
             if ($route === $path) {
                 [$controller, $method] = explode('@', $action);
@@ -36,14 +50,21 @@ private $routes = [];
                     return;
                 }
 
+                // If controller or method doesn't exist, call 404
                 http_response_code(404);
-                echo "Controller or method not found: $controllerClass@$method";
+                if ($path !== '404') { // Avoid looping back to 404
+                    $this->dispatch('404');
+                }
                 return;
             }
         }
 
+        // If no route matches, call 404
         http_response_code(404);
-        echo "404 - Route not found";
+        if ($path !== '404') { // Avoid looping back to 404
+            $this->dispatch('404');
+        }
     }
+
 
 }

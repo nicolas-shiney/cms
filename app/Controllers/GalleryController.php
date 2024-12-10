@@ -8,14 +8,16 @@
 
 namespace App\Controllers;
 
-class GaleryController
+use App\Views\BaseView;
+
+class GalleryController
 {
     public function index(array $data = []): void
     {
         $view = new BaseView();
-        $view->render('galery.tpl', array_merge($data, [
+        $view->render('gallery.tpl', array_merge($data, [
             'title' => 'Look at those!',
-            'content' => 'Feel free to reach out to us using the form below.',
+            'content' => 'Look at those awesome pictures!',
         ]));
     }
 }

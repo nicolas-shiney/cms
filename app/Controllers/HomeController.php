@@ -16,6 +16,7 @@ class HomeController
     {
         $view = new BaseView();
         $view->render('home.tpl', array_merge($data, [
+            'title' => "Simple CMS's home",
             'username' => 'John Doe',
             'content' => 'Welcome to the CMS!',
         ]));

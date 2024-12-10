@@ -9,38 +9,47 @@
     <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="index.php?page=home">Simple CMS</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link {if $currentPage == 'home'}active{/if}" href="index.php?page=home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {if $currentPage == 'post'}active{/if}" href="index.php?page=post">Post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {if $currentPage == 'gallery'}active{/if}" href="index.php?page=gallery">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {if $currentPage == 'contact'}active{/if}" href="index.php?page=contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {if $currentPage == 'about'}active{/if}" href="index.php?page=about">About</a>
-                </li>
-            </ul>
+<div class="container">
+    <!-- Jumbotron -->
+    <div class="jumbotron bg-dark p-5 rounded mt-4">
+        <div class="container align-cont my-5 mx-5">
+            <h1 class="display-4 text-light">Welcome to Simple CMS</h1>
+            <p class="lead text-secondary px-5">A simple content management system to make your life easier.</p>
         </div>
     </div>
-</nav>
-<!-- Main Content -->
-<main class="container mt-4">
-    {block name="content"}{/block}
-</main>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php?page=home">Simple CMS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {if $currentPage == 'home'}active{/if}" href="index.php?page=home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {if $currentPage == 'post'}active{/if}" href="index.php?page=post">Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {if $currentPage == 'gallery'}active{/if}" href="index.php?page=gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {if $currentPage == 'contact'}active{/if}" href="index.php?page=contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {if $currentPage == 'about'}active{/if}" href="index.php?page=aboute">Aboute</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <main class="mt-4">
+        {block name="content"}{/block}
+    </main>
+</div>
 <!-- Footer -->
 <footer class="bg-dark text-white text-center p-3 mt-4">
     <p>&copy; {$year} My CMS</p>

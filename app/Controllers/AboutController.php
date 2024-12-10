@@ -8,6 +8,8 @@
 
 namespace App\Controllers;
 
+use App\Views\BaseView;
+
 class AboutController
 {
     public function index(array $data = []): void
