@@ -33,6 +33,9 @@ $router->add('404', 'ErrorController@index');
 $router->add('post/{id}', 'PostController@show');
 $router->add('user/{username}', 'UserController@profile');
 
+$router->add('admin', 'AdminController@index');
+
+
 
 // Handle 404 for unmatched routes
 $requestedPage = $_GET['page'] ?? 'home';

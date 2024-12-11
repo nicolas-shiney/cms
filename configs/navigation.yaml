@@ -9,3 +9,5 @@ menu:
   path: contact
 - name: About
   path: about
+- name: Admin
+  path: admin
