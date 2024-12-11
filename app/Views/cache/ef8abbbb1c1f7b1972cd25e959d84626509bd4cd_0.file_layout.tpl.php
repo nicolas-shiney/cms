@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-11 20:08:57
+/* Smarty version 5.4.2, created on 2024-12-11 21:24:21
   from 'file:layout.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_6759b919631a50_70467248',
+  'unifunc' => 'content_6759cac5ecbbd4_51050798',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ef8abbbb1c1f7b1972cd25e959d84626509bd4cd' => 
     array (
       0 => 'layout.tpl',
-      1 => 1733933336,
+      1 => 1733937861,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6759b919631a50_70467248 (\Smarty\Template $_smarty_tpl) {
+function content_6759cac5ecbbd4_51050798 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -39,7 +39,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 <div class="container">
     <!-- Jumbotron -->
     <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10565284556759b91962b801_72859296', "jumbotron");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2537524876759cac5ec4e92_84023133', "jumbotron");
 ?>
 
     <!-- Navbar -->
@@ -71,7 +71,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <!-- Main Content -->
     <main class="mt-4">
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6254731716759b9196302b1_07331060', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_16876390766759cac5eca1f3_28686545', "content");
 ?>
 
     </main>
@@ -89,7 +89,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_6254731716759
 </html>
 <?php }
 /* {block "jumbotron"} */
-class Block_10565284556759b91962b801_72859296 extends \Smarty\Runtime\Block
+class Block_2537524876759cac5ec4e92_84023133 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
@@ -98,10 +98,19 @@ $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
         <div class="jumbotron <?php if ($_smarty_tpl->getValue('isAdmin')) {?> bg-primary text-white p-5 rounded mt-4 <?php } else { ?>bg-dark p-5 rounded mt-4<?php }?>">
             <div class="container align-cont my-5 mx-5">
                 <h1 class="display-4 <?php if ($_smarty_tpl->getValue('isAdmin')) {?>text-white<?php } else { ?>text-light<?php }?>">
-                    <?php if ($_smarty_tpl->getValue('isAdmin')) {?>Admin Dashboard<?php } else { ?>Welcome to Simple CMS<?php }?>
+                    <?php if ($_smarty_tpl->getValue('isAdmin')) {?>
+                        Admin Dashboard
+                    <?php } else { ?>
+                        <?php echo $_smarty_tpl->getValue('jumbotron_title');?>
+
+                    <?php }?>
                 </h1>
                 <p class="lead <?php if ($_smarty_tpl->getValue('isAdmin')) {?>text-white-50<?php } else { ?>text-secondary px-5<?php }?>">
-                    <?php if ($_smarty_tpl->getValue('isAdmin')) {?>Manage your CMS content with ease.<?php } else { ?>A simple content management system to make your life easier.<?php }?>
+                    <?php if ($_smarty_tpl->getValue('isAdmin')) {?>
+                        Manage your CMS content with ease.
+                    <?php } else { ?>
+                        A simple content management system to make your life easier.
+                    <?php }?>
                 </p>
             </div>
         </div>
@@ -110,7 +119,7 @@ $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
 }
 /* {/block "jumbotron"} */
 /* {block "content"} */
-class Block_6254731716759b9196302b1_07331060 extends \Smarty\Runtime\Block
+class Block_16876390766759cac5eca1f3_28686545 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';

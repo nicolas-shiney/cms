@@ -15,10 +15,18 @@
         <div class="jumbotron {if $isAdmin} bg-primary text-white p-5 rounded mt-4 {else}bg-dark p-5 rounded mt-4{/if}">
             <div class="container align-cont my-5 mx-5">
                 <h1 class="display-4 {if $isAdmin}text-white{else}text-light{/if}">
-                    {if $isAdmin}Admin Dashboard{else}Welcome to Simple CMS{/if}
+                    {if $isAdmin}
+                        Admin Dashboard
+                    {else}
+                        {$jumbotron_title}
+                    {/if}
                 </h1>
                 <p class="lead {if $isAdmin}text-white-50{else}text-secondary px-5{/if}">
-                    {if $isAdmin}Manage your CMS content with ease.{else}A simple content management system to make your life easier.{/if}
+                    {if $isAdmin}
+                        Manage your CMS content with ease.
+                    {else}
+                        A simple content management system to make your life easier.
+                    {/if}
                 </p>
             </div>
         </div>

@@ -19,8 +19,6 @@ $db = new Database('../configs/database.dev.yaml');
 // Test query
 $users = $db->fetchAll("SELECT * FROM users");
 
-var_dump($users);
-
 
 $router = new Router();
 
@@ -29,11 +27,14 @@ $router->add('post', 'PostController@index');
 $router->add('gallery', 'GalleryController@index');
 $router->add('contact', 'ContactController@index');
 $router->add('about', 'AboutController@index');
+
 $router->add('404', 'ErrorController@index');
+
 $router->add('post/{id}', 'PostController@show');
 $router->add('user/{username}', 'UserController@profile');
 
 $router->add('admin', 'AdminController@index');
+$router->add('admin_users', 'AdminUsersController@index');
 
 
 

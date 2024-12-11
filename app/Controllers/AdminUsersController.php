@@ -3,19 +3,19 @@
  * Created by Vim.
  * User: nicolas
  * Date: 2024-12-11
- * Time: 13:56
+ * Time: 21:14
  */
 namespace App\Controllers;
 use App\Views\BaseView;
 
-class AdminController
+class AdminUsersController
 {
     public function index(): void
     {
         $view = new BaseView(BASE_DIR);
-        $view->render('admin/dashboard.tpl', [
+        $view->render('admin/users.tpl', [
+            'title' => 'Manage Users',
             'isAdmin' => true,
-            'title' => 'Admin Dashboard',
         ]);
     }
 }

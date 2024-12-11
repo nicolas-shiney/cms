@@ -6,3 +6,8 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Change hover color for btn-primary */
+.btn-primary:hover {
+    background-color: var(--bs-warning); /* Use the Bootstrap warning color */
+    border-color: var(--bs-warning);    /* Match the border with warning color */
+}
