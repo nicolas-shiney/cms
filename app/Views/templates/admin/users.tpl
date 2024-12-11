@@ -2,7 +2,12 @@
 
 {block name="content"}
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Manage Users</h1>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+                <h1>Manage Users</h1>
+                <a href="index.php?page=user_add" class="btn btn-success">Add User</a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <table class="table table-striped">

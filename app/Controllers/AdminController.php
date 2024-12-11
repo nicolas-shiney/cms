@@ -6,6 +6,7 @@
  * Time: 13:56
  */
 namespace App\Controllers;
+
 use App\Views\BaseView;
 
 class AdminController
@@ -18,7 +19,6 @@ class AdminController
             'title' => 'Admin Dashboard',
             'jumbotron_title' => ' Admin Dashboard',
             'jumbotron_subtitle' => 'Manage your CMS content with ease.',
-            'title' => 'Admin Dashboard',
         ]);
     }
 }

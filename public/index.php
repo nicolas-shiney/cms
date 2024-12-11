@@ -35,6 +35,9 @@ $router->add('user/{username}', 'UserController@profile');
 
 $router->add('admin', 'AdminController@index');
 $router->add('admin_users', 'AdminUsersController@index');
+$router->add('user_add', 'AdminUsersController@add');
+$router->add('user_update', 'AdminUsersController@update');
+
 
 
 
