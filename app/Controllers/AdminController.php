@@ -16,6 +16,9 @@ class AdminController
         $view->render('admin/dashboard.tpl', [
             'isAdmin' => true,
             'title' => 'Admin Dashboard',
+            'jumbotron_title' => ' Admin Dashboard',
+            'jumbotron_subtitle' => 'Manage your CMS content with ease.',
+            'title' => 'Admin Dashboard',
         ]);
     }
 }

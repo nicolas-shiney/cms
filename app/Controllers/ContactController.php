@@ -14,7 +14,10 @@ class ContactController
     {
         $view = new BaseView(BASE_DIR);
         $view->render('contact.tpl', array_merge($data, [
+            'isAdmin' => false,
             'title' => 'Contact Us',
+            'jumbotron_title' => 'Welcome to Simple CMS',
+            'jumbotron_subtitle' => 'Manage your CMS content with ease.',
             'content' => 'Feel free to reach out to us using the form below.',
         ]));
     }

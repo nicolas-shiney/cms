@@ -14,7 +14,10 @@ class PostController
     {
         $view = new BaseView(BASE_DIR);
         $view->render('post.tpl', array_merge($data, [
+            'isAdmin' => false,
             'title' => 'Post',
+            'jumbotron_title' => 'Welcome to Simple CMS',
+            'jumbotron_subtitle' => 'Manage your CMS content with ease.',
             'content' => 'So much to read here.',
         ]));
     }

@@ -14,8 +14,8 @@ class ErrorController
     {
         $view = new BaseView(BASE_DIR);
         $view->render('contact.tpl', array_merge($data, [
-            'title' => 'Contact Us',
-            'content' => 'Feel free to reach out to us using the form below.',
+            'title' => 'Error',
+            'content' => 'Error',
         ]));
     }
 }

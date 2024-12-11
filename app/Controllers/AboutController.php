@@ -14,7 +14,10 @@ class AboutController
     {
         $view = new BaseView(BASE_DIR);
         $view->render('about.tpl', array_merge($data, [
+            'isAdmin' => false,
             'title' => 'About Us',
+            'jumbotron_title' => 'Welcome to Simple CMS',
+            'jumbotron_subtitle' => 'Manage your CMS content with ease.',
             'content' => 'Here is where you get to know more about us.',
         ]));
     }
