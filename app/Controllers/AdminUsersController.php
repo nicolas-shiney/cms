@@ -12,13 +12,29 @@ use App\Services\Database;
 
 class AdminUsersController
 {
+
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new Database(BASE_DIR . '/configs/database.dev.yaml');
+        $this->db->loadQueries(BASE_DIR . '/configs/queries.yaml');
+    }
+
     /**
      * Display the list of users.
      */
     public function index(): void
     {
-        $db = new Database(BASE_DIR . '/configs/database.dev.yaml');
-        $users = $db->fetchAll("SELECT * FROM users ORDER BY id DESC");
+        $query = $this->db->getQuery('fetch_all_users');
+        try {
+            $users = $this->db->fetchAll($query);
+        } catch (\Exception $e) {
+            error_log("Failed to fetch users: " . $e->getMessage());
+            error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Failed to fetch users: " . $e->getMessage(), 3, BASE_DIR . '/logs/errors-info.log');
+            die("An error occurred. Please try again later.");
+        }
+
 
         $view = new BaseView(BASE_DIR);
         $view->render('admin/users.tpl', [
@@ -41,43 +57,49 @@ class AdminUsersController
             $password = $_POST['password'] ?? '';
             $role = $_POST['role'] ?? 'user';
 
-            $db = new Database(BASE_DIR . '/configs/database.dev.yaml');
-
             // Check if the username already exists
-            $existingUser = $db->fetchOne("SELECT * FROM users WHERE username = :username", [
-                'username' => $username,
-            ]);
+            $query = $this->db->getQuery('fetch_user_by_username');
+            try {
+                $existingUser = $this->db->fetchOne($query, [
+                    'username' => $username,
+                ]);
+            } catch (\Exception $e) {
+                error_log("Failed to fetch user: " . $e->getMessage());
+                error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Failed to fetch user: " . $e->getMessage(), 3, BASE_DIR . '/logs/errors-info.log');
+                die("An error occurred. Please try again later.");
+            }
+
 
             if ($existingUser) {
-                // Username already exists, render the form with an error message
                 $view = new BaseView(BASE_DIR);
                 $view->render('admin/user_add.tpl', [
                     'isAdmin' => true,
                     'title' => 'Add User',
                     'error' => "Username '{$username}' already exists. Please choose another.",
                 ]);
-                return; // Exit early to prevent insertion
+                return;
             }
 
-            // Proceed with insertion if username is unique
-            if (!empty($username) && !empty($email) && !empty($password)) {
-                $query = "INSERT INTO users (username, email, password_hash, role) VALUES (:username, :email, :password_hash, :role)";
-                echo "<pre>";
-                echo $query;
-                echo "</pre>";
-                //$db->execute($query);
-                $params =
+            // Insert the new user
+            $query = $this->db->getQuery('insert_user');
+            try {
+                $this->db->execute( $query,
                     [
                         'username' => $username,
                         'email' => $email,
                         'password_hash' => password_hash($password, PASSWORD_BCRYPT),
                         'role' => $role,
-                    ];
-                $db->query($query, $params);
-                // Redirect to the users list
-                header('Location: index.php?page=admin_users');
-                exit;
+                    ]
+                );
+            } catch (\Exception $e) {
+                error_log("Failed to inser user: " . $e->getMessage());
+                error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Failed to inser user: " . $e->getMessage(), 3, BASE_DIR . '/logs/errors-info.log');
+                die("An error occurred. Please try again later.");
             }
+
+
+            header('Location: index.php?page=admin_users');
+            exit;
         }
 
         // Render the form if it's not a POST request
@@ -87,5 +109,4 @@ class AdminUsersController
             'title' => 'Add User',
         ]);
     }
-
 }

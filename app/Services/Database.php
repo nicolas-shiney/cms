@@ -6,7 +6,6 @@
  * Time: 19:43
  */
 
-
 namespace App\Services;
 
 use PDO;
@@ -26,7 +25,6 @@ class Database
     {
         try {
             $config = $this->loadConfig($configPath);
-
             $dsn = sprintf(
                 'mysql:host=%s;port=%s;dbname=%s;charset=%s',
                 $config['host'],
@@ -34,17 +32,19 @@ class Database
                 $config['dbname'],
                 $config['charset']
             );
-
             $this->connection = new PDO(
                 $dsn,
                 $config['username'],
                 $config['password'],
                 $config['options'] ?? []
             );
-
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Database connection failed: " . $e->getMessage());
+            error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Database connection failed: " . $e->getMessage(), 3, BASE_DIR . '/logs/app-errors.log');
+            error_log("[" . date('Y-m-d H:i:s') . "] [INFO] User 'admin' logged in successfully.", 3, BASE_DIR . '/logs/app-info.log');
+
+
+            die("Database connection failed. Check logs for details.");
         }
     }
 
@@ -59,7 +59,6 @@ class Database
         if (!file_exists($configPath)) {
             throw new \RuntimeException("Database configuration file not found: $configPath");
         }
-
         return Yaml::parseFile($configPath);
     }
 
@@ -74,7 +73,6 @@ class Database
         if (!file_exists($queryPath)) {
             throw new \RuntimeException("Query file not found: $queryPath");
         }
-
         return Yaml::parseFile($queryPath);
     }
 
@@ -87,13 +85,16 @@ class Database
      */
     public function query(string $sql, array $params = []): \PDOStatement
     {
-        //$stmt = $this->connection->prepare();
-
-        //$queryPath = $this->loadQuery();
-
-        $stmt = $this->connection->prepare($sql);
-        $stmt->execute($params);
-        return $stmt;
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute($params);
+            return $stmt;
+        } catch (PDOException $e) {
+            error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Database Query Error: " . $e->getMessage(), 3, BASE_DIR . '/logs/errors-info.log');
+            error_log("[" . date('Y-m-d H:i:s') . "] [INFO] Query: " . $sql, 3, BASE_DIR . '/logs/app-info.log');
+            error_log("[" . date('Y-m-d H:i:s') . "] [INFO] Parameters: " . json_encode($params), 3, BASE_DIR . '/logs/app-info.log');
+            throw $e; // Re-throw for higher-level handling
+        }
     }
 
     /**
@@ -128,18 +129,54 @@ class Database
      * @param array $params Parameters for the prepared statement.
      * @return bool True on success, false otherwise.
      */
-    public function execute(string $sql, array $params = []): bool
+    public function execute(string $sql, array $params = []): void
     {
-        return $this->query($sql, $params)->execute();
+        $this->query($sql, $params);
     }
 
     /**
      * Returns the raw PDO connection for advanced usage.
      *
-     * @return \PDO The PDO connection.
+     * @return PDO The PDO connection.
      */
     public function getConnection(): PDO
     {
         return $this->connection;
     }
+
+
+
+
+
+
+    private  $queries = [];
+
+    /**
+     * Loads query file from a YAML file.
+     *
+     * @param string $queryPath Path to the YAML query file.
+     */
+    public function loadQueries(string $queryPath): void
+    {
+        if (!file_exists($queryPath)) {
+            throw new \RuntimeException("Query file not found: $queryPath");
+        }
+        $this->queries = Yaml::parseFile($queryPath);
+    }
+
+    /**
+     * Get a query by its key.
+     *
+     * @param string $key The query key.
+     * @return string The SQL query.
+     */
+    public function getQuery(string $key): string
+    {
+        if (!isset($this->queries[$key])) {
+            throw new \InvalidArgumentException("Query not found for key: $key");
+        }
+        return $this->queries[$key];
+    }
+
+
 }

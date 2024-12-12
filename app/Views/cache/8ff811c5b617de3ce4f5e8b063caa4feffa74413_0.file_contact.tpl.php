@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-11 20:46:59
+/* Smarty version 5.4.2, created on 2024-12-12 18:48:58
   from 'file:contact.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_6759c203c10849_32990503',
+  'unifunc' => 'content_675af7da057929_10395389',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,20 +20,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6759c203c10849_32990503 (\Smarty\Template $_smarty_tpl) {
+function content_675af7da057929_10395389 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_10235204106759c203c0ed52_42583269', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1571449148675af7da055a46_62559868', "content");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layout.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_10235204106759c203c0ed52_42583269 extends \Smarty\Runtime\Block
+class Block_1571449148675af7da055a46_62559868 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';

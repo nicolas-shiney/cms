@@ -1,6 +1,0 @@
-before "$db->execute([…]"
-array(4) { ["username"]=> string(6) "hhhhhh" ["email"]=> string(6) "a@a.ah" ["password_hash"]=> string(60) "$2y$10$0zt5dgekJZU9p1dHTlGUZ.9G7ywSuGcMfFkEgI.u90UDk7gwxm04K" ["role"]=> string(4) "user" }
-
-after "$db->execute([…]"
-
-Fatal error: Uncaught PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry 'hhhhhh' for key 'username' in /home/nicolas/projects/cms/app/Services/Database.php:114 Stack trace: #0 /home/nicolas/projects/cms/app/Services/Database.php(114): PDOStatement->execute() #1 /home/nicolas/projects/cms/app/Controllers/AdminUsersController.php(71): App\Services\Database->execute() #2 /home/nicolas/projects/cms/app/Services/Router.php(41): App\Controllers\AdminUsersController->add() #3 /home/nicolas/projects/cms/public/index.php(50): App\Services\Router->dispatch() #4 {main} thrown in /home/nicolas/projects/cms/app/Services/Database.php on line 114
