@@ -18,7 +18,7 @@ class AdminUsersController
     public function index(): void
     {
         $db = new Database(BASE_DIR . '/configs/database.dev.yaml');
-        $users = $db->fetchAll("SELECT * FROM users");
+        $users = $db->fetchAll("SELECT * FROM users ORDER BY id DESC");
 
         $view = new BaseView(BASE_DIR);
         $view->render('admin/users.tpl', [
@@ -61,18 +61,21 @@ class AdminUsersController
 
             // Proceed with insertion if username is unique
             if (!empty($username) && !empty($email) && !empty($password)) {
-
-                $db->execute(
-                    "INSERT INTO users (username, email, password_hash, role) VALUES (:username, :email, :password_hash, :role)",
+                $query = "INSERT INTO users (username, email, password_hash, role) VALUES (:username, :email, :password_hash, :role)";
+                echo "<pre>";
+                echo $query;
+                echo "</pre>";
+                //$db->execute($query);
+                $params =
                     [
                         'username' => $username,
                         'email' => $email,
                         'password_hash' => password_hash($password, PASSWORD_BCRYPT),
                         'role' => $role,
-                    ]
-                );
+                    ];
+                $db->query($query, $params);
                 // Redirect to the users list
-                //header('Location: index.php?page=admin_users');
+                header('Location: index.php?page=admin_users');
                 exit;
             }
         }

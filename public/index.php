@@ -38,12 +38,9 @@ $router->add('admin_users', 'AdminUsersController@index');
 $router->add('user_add', 'AdminUsersController@add');
 $router->add('user_update', 'AdminUsersController@update');
 
-
-
-
-// Handle 404 for unmatched routes
 $requestedPage = $_GET['page'] ?? 'home';
 
+// Handle 404 for unmatched routes
 if (!$router->has($requestedPage)) {
     $router->dispatch('404');
 } else {
