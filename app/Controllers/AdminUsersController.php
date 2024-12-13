@@ -8,34 +8,31 @@
 namespace App\Controllers;
 
 use App\Views\BaseView;
+use App\Models\User;
 use App\Services\Database;
+use App\Utilities\MessageHandler;
 
 class AdminUsersController
 {
-
-    private $db;
+    private $userModel;
+    private $messageHandler;
 
     public function __construct()
     {
-        $this->db = new Database(BASE_DIR . '/configs/database.dev.yaml');
-        $this->db->loadQueries(BASE_DIR . '/configs/queries.yaml');
+        $db = new Database(CONFIG_DIR . '/database.dev.yaml');
+        $db->loadQueries(CONFIG_DIR . '/queries.yaml');
+        $this->userModel = new User($db);
+        $this->messageHandler = new MessageHandler();
     }
 
-    /**
-     * Display the list of users.
-     */
     public function index(): void
     {
-        $query = $this->db->getQuery('fetch_all_users');
         try {
-            $users = $this->db->fetchAll($query);
+            $users = $this->userModel->getAllUsers();
         } catch (\Exception $e) {
-            error_log("Failed to fetch users: " . $e->getMessage());
-            error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Failed to fetch users: " . $e->getMessage(), 3, BASE_DIR . '/logs/errors-info.log');
+            $this->messageHandler->logError('Failed to fetch users', $e);
             die("An error occurred. Please try again later.");
         }
-
-
         $view = new BaseView(BASE_DIR);
         $view->render('admin/users.tpl', [
             'isAdmin' => true,
@@ -43,12 +40,10 @@ class AdminUsersController
             'jumbotron_title' => 'Users Management',
             'jumbotron_subtitle' => 'CRUD users here',
             'users' => $users,
+            'flashMessages' => $this->messageHandler->getFlashAndClear(),
         ]);
     }
 
-    /**
-     * Display the "Add User" form and handle form submission.
-     */
     public function add(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,56 +52,46 @@ class AdminUsersController
             $password = $_POST['password'] ?? '';
             $role = $_POST['role'] ?? 'user';
 
-            // Check if the username already exists
-            $query = $this->db->getQuery('fetch_user_by_username');
             try {
-                $existingUser = $this->db->fetchOne($query, [
-                    'username' => $username,
-                ]);
-            } catch (\Exception $e) {
-                error_log("Failed to fetch user: " . $e->getMessage());
-                error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Failed to fetch user: " . $e->getMessage(), 3, BASE_DIR . '/logs/errors-info.log');
-                die("An error occurred. Please try again later.");
-            }
+                // Check if the username already exists
+                $existingUserByUsername = $this->userModel->getUserByUsername($username);
+                if ($existingUserByUsername) {
+                    $this->messageHandler->setFlash('danger', "Username <strong>{$username}</strong> already exists.");
+                    header('Location: index.php?page=user_add');
+                    exit;
+                }
 
+                // Check if the email already exists
+                $existingUserByEmail = $this->userModel->getUserByEmail($email);
+                if ($existingUserByEmail) {
+                    $this->messageHandler->setFlash('danger', "Email <strong>{$email}</strong> already exists.");
+                    header('Location: index.php?page=user_add');
+                    exit;
+                }
 
-            if ($existingUser) {
-                $view = new BaseView(BASE_DIR);
-                $view->render('admin/user_add.tpl', [
-                    'isAdmin' => true,
-                    'title' => 'Add User',
-                    'error' => "Username '{$username}' already exists. Please choose another.",
-                ]);
-                return;
-            }
-
-            // Insert the new user
-            $query = $this->db->getQuery('insert_user');
-            try {
-                $this->db->execute( $query,
-                    [
-                        'username' => $username,
-                        'email' => $email,
-                        'password_hash' => password_hash($password, PASSWORD_BCRYPT),
-                        'role' => $role,
-                    ]
+                // Insert the new user
+                $this->userModel->addUser(
+                    $username,
+                    $email,
+                    password_hash($password, PASSWORD_BCRYPT),
+                    $role
                 );
+
+                $this->messageHandler->setFlash('success', "User <strong>{$username}</strong> added successfully.");
+                header('Location: index.php?page=admin_users');
+                exit;
+
             } catch (\Exception $e) {
-                error_log("Failed to inser user: " . $e->getMessage());
-                error_log("[" . date('Y-m-d H:i:s') . "] [ERROR] Failed to inser user: " . $e->getMessage(), 3, BASE_DIR . '/logs/errors-info.log');
+                $this->messageHandler->logError('Failed to add user', $e);
                 die("An error occurred. Please try again later.");
             }
-
-
-            header('Location: index.php?page=admin_users');
-            exit;
         }
 
-        // Render the form if it's not a POST request
         $view = new BaseView(BASE_DIR);
         $view->render('admin/user_add.tpl', [
             'isAdmin' => true,
             'title' => 'Add User',
+            'flashMessages' => $this->messageHandler->getFlashAndClear(),
         ]);
     }
 }

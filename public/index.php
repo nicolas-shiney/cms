@@ -5,11 +5,10 @@
  * Date: 2024-12-09
  * Time: 17:15
  */
-
+session_start();
 require '../vendor/autoload.php';
 
 use App\Services\Router;
-use App\Services\Database;
 
 define('BASE_DIR', dirname(__DIR__)); // Base directory of the project
 define('CONFIG_DIR', dirname(__DIR__) . '/configs');

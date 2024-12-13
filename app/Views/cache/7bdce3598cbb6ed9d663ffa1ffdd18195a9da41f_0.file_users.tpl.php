@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-13 12:29:02
+/* Smarty version 5.4.2, created on 2024-12-13 21:09:13
   from 'file:admin/users.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_675bf04e8a28b6_95844014',
+  'unifunc' => 'content_675c6a397497d3_65788191',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7bdce3598cbb6ed9d663ffa1ffdd18195a9da41f' => 
     array (
       0 => 'admin/users.tpl',
-      1 => 1734015910,
+      1 => 1734109752,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_675bf04e8a28b6_95844014 (\Smarty\Template $_smarty_tpl) {
+function content_675c6a397497d3_65788191 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates/admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 $_smarty_debug = new \Smarty\Debug;
@@ -30,13 +30,29 @@ unset($_smarty_debug);
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1932034316675bf04e8a0658_10872919', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1109535206675c6a39746989_89559973', "content");
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layout.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_1932034316675bf04e8a0658_10872919 extends \Smarty\Runtime\Block
+class Block_1109535206675c6a39746989_89559973 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates/admin';
@@ -92,7 +108,52 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             </div>
         </div>
     </div>
-<?php
+<?php if ((null !== ($_smarty_tpl->getValue('flashMessages') ?? null)) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('flashMessages')) > 0) {?>
+    <div class="modal fade" id="flashModal" tabindex="-1" aria-labelledby="flashModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border border-success">
+                <div class="modal-header bg-success-subtle">
+                    <h5 class="modal-title text-success" id="flashModalLabel">Sweeeet!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-success-subtle text-center">
+                    <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('flashMessages'), 'messages', false, 'type');
+$foreach1DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('type')->value => $_smarty_tpl->getVariable('messages')->value) {
+$foreach1DoElse = false;
+?>
+                        <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('messages'), 'msg');
+$foreach2DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('msg')->value) {
+$foreach2DoElse = false;
+?>
+                            <div class="text-<?php echo $_smarty_tpl->getValue('type');?>
+"><?php echo $_smarty_tpl->getValue('msg');?>
+</div>
+                        <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+                    <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+                </div>
+                <div class="modal-footer bg-success-subtle">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php echo '<script'; ?>
+>
+        document.addEventListener('DOMContentLoaded', function () {
+            var flashModal = new bootstrap.Modal(document.getElementById('flashModal'));
+            flashModal.show();
+        });
+    <?php echo '</script'; ?>
+>
+<?php }
 }
 }
 /* {/block "content"} */

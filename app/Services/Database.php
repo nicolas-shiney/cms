@@ -63,20 +63,6 @@ class Database
     }
 
     /**
-     * Loads query file from a YAML file.
-     *
-     * @param string $queryPath Path to the YAML config file.
-     * @return array The database configuration.
-     */
-    private function loadQuery(string $queryPath): array
-    {
-        if (!file_exists($queryPath)) {
-            throw new \RuntimeException("Query file not found: $queryPath");
-        }
-        return Yaml::parseFile($queryPath);
-    }
-
-    /**
      * Executes a query and returns the PDOStatement.
      *
      * @param string $sql The SQL query.

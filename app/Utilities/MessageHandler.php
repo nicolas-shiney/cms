@@ -5,77 +5,80 @@
  * Date: 2024-12-08
  * Time: 18:11
  */
+namespace App\Utilities;
 
-require_once '../../vendor/autoload.php';
-
-
-
-/**
- * Class MessageHandler
- * Provides methods to display styled messages in the console using CLImate.
- */
 class MessageHandler
 {
-    /**
-     * @var CLImate The CLImate instance for styled output.
-     */
+    private $logFile;
+    private $flashStorage;
 
-    /**
-     * MessageHandler constructor.
-     * Initializes the CLImate instance.
-     */
-    public function __construct()
+    public function __construct(string $logFile = null, &$flashStorage = null)
     {
-        $this->climate = new CLImate();
+        // Ensure session is started
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $this->logFile = $logFile ?? BASE_DIR . '/logs/app.log';
+
+        // Initialize flash storage
+        if (!isset($_SESSION['flash_messages'])) {
+            $_SESSION['flash_messages'] = [];
+        }
+        $this->flashStorage = &$_SESSION['flash_messages'];
     }
 
-    /**
-     * Displays an informational message.
-     *
-     * @param string $message The message to display.
-     */
-    public function info(string $message): void
+    // Flash Messages
+    public function setFlash(string $type, string $message): void
     {
-        $this->climate->cyan()->out($message);
+        $this->flashStorage[$type][] = $message;
     }
 
-    /**
-     * Displays a success message.
-     *
-     * @param string $message The message to display.
-     */
-    public function success(string $message): void
+    public function getFlash(string $type = null): array
     {
-        $this->climate->green()->out($message);
+        $messages = $this->flashStorage ?? [];
+        if ($type) {
+            return $messages[$type] ?? [];
+        }
+        return $messages;
     }
 
-    /**
-     * Displays a warning message.
-     *
-     * @param string $message The message to display.
-     */
-    public function warning(string $message): void
+    public function getFlashAndClear(string $type = null): array
     {
-        $this->climate->yellow()->out($message);
+        $messages = $this->getFlash($type);
+        $this->clearFlash($type);
+        return $messages;
     }
 
-    /**
-     * Displays an error message.
-     *
-     * @param string $message The message to display.
-     */
-    public function error(string $message): void
+    public function clearFlash(string $type = null): void
     {
-        $this->climate->red()->out($message);
+        if ($type) {
+            unset($this->flashStorage[$type]);
+        } else {
+            $this->flashStorage = [];
+        }
     }
 
-    /**
-     * Displays a styled title.
-     *
-     * @param string $title The title to display.
-     */
-    public function title(string $title): void
+    // Logging
+    public function log(string $level, string $message, \Exception $exception = null): void
     {
-        $this->climate->bold()->white()->out($title);
+        $dateTime = date('Y-m-d H:i:s');
+        $logMessage = "[$dateTime][$level] $message";
+
+        if ($exception) {
+            $logMessage .= " Exception: " . $exception->getMessage();
+        }
+
+        error_log($logMessage . PHP_EOL, 3, $this->logFile);
+    }
+
+    public function logError(string $message, \Exception $exception = null): void
+    {
+        $this->log('ERROR', $message, $exception);
+    }
+
+    public function logInfo(string $message): void
+    {
+        $this->log('INFO', $message);
     }
 }
