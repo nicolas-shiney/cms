@@ -32,7 +32,8 @@ $router->add('user/{username}', 'UserController@profile');
 $router->add('admin', 'AdminController@index');
 $router->add('admin_users', 'AdminUsersController@index');
 $router->add('user_add', 'AdminUsersController@add');
-$router->add('user_update', 'AdminUsersController@update');
+$router->add('user_edit', 'AdminUsersController@edit');
+$router->add('user_delete', 'AdminUsersController@delete');
 
 $requestedPage = $_GET['page'] ?? 'home';
 

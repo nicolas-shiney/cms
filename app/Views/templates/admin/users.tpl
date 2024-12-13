@@ -28,10 +28,39 @@
                             <td>{$user.username}</td>
                             <td>{$user.email}</td>
                             <td>{$user.role}</td>
+                            <!--
                             <td>
-                                <a href="index.php?page=edit_user&id={$user.id}" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="index.php?page=delete_user&id={$user.id}" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="index.php?page=user_edit&id={$user.id}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="index.php?page=user_delete&id={$user.id}" class="btn btn-danger btn-sm">Delete</a>
                             </td>
+                             -->
+                            <td>
+                                <a href="index.php?page=user_edit&id={$user.id}" class="btn btn-warning btn-sm">Edit</a>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal{$user.id}">Delete</button>
+
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="deleteUserModal{$user.id}" tabindex="-1" aria-labelledby="deleteUserModalLabel{$user.id}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-warning-subtle">
+                                                <h5 class="modal-title text-warning" id="deleteUserModalLabel{$user.id}">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body bg-warning-subtle">
+                                                Are you sure you want to delete <strong>{$user.username}</strong>?
+                                            </div>
+                                            <div class="modal-footer bg-warning-subtle">
+                                                <form method="POST" action="index.php?page=user_delete">
+                                                    <input type="hidden" name="id" value="{$user.id}">
+                                                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
                         </tr>
                     {/foreach}
                     </tbody>

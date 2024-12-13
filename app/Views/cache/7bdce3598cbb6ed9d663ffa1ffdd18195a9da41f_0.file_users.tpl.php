@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-13 21:09:13
+/* Smarty version 5.4.2, created on 2024-12-13 21:54:28
   from 'file:admin/users.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_675c6a397497d3_65788191',
+  'unifunc' => 'content_675c74d415e012_43994353',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7bdce3598cbb6ed9d663ffa1ffdd18195a9da41f' => 
     array (
       0 => 'admin/users.tpl',
-      1 => 1734109752,
+      1 => 1734112465,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_675c6a397497d3_65788191 (\Smarty\Template $_smarty_tpl) {
+function content_675c74d415e012_43994353 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates/admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 $_smarty_debug = new \Smarty\Debug;
@@ -30,7 +30,7 @@ unset($_smarty_debug);
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1109535206675c6a39746989_89559973', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2106651164675c74d4156189_77140401', "content");
 ?>
 
 
@@ -52,7 +52,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1109535206675
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layout.tpl", $_smarty_current_dir);
 }
 /* {block "content"} */
-class Block_1109535206675c6a39746989_89559973 extends \Smarty\Runtime\Block
+class Block_2106651164675c74d4156189_77140401 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates/admin';
@@ -93,12 +93,48 @@ $foreach0DoElse = false;
 </td>
                             <td><?php echo $_smarty_tpl->getValue('user')['role'];?>
 </td>
+                            <!--
                             <td>
-                                <a href="index.php?page=edit_user&id=<?php echo $_smarty_tpl->getValue('user')['id'];?>
+                                <a href="index.php?page=user_edit&id=<?php echo $_smarty_tpl->getValue('user')['id'];?>
 " class="btn btn-warning btn-sm">Edit</a>
-                                <a href="index.php?page=delete_user&id=<?php echo $_smarty_tpl->getValue('user')['id'];?>
+                                <a href="index.php?page=user_delete&id=<?php echo $_smarty_tpl->getValue('user')['id'];?>
 " class="btn btn-danger btn-sm">Delete</a>
                             </td>
+                             -->
+                            <td>
+                                <a href="index.php?page=user_edit&id=<?php echo $_smarty_tpl->getValue('user')['id'];?>
+" class="btn btn-warning btn-sm">Edit</a>
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal<?php echo $_smarty_tpl->getValue('user')['id'];?>
+">Delete</button>
+
+                                <!-- Delete Confirmation Modal -->
+                                <div class="modal fade" id="deleteUserModal<?php echo $_smarty_tpl->getValue('user')['id'];?>
+" tabindex="-1" aria-labelledby="deleteUserModalLabel<?php echo $_smarty_tpl->getValue('user')['id'];?>
+" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-warning-subtle">
+                                                <h5 class="modal-title text-warning" id="deleteUserModalLabel<?php echo $_smarty_tpl->getValue('user')['id'];?>
+">Confirm Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body bg-warning-subtle">
+                                                Are you sure you want to delete <strong><?php echo $_smarty_tpl->getValue('user')['username'];?>
+</strong>?
+                                            </div>
+                                            <div class="modal-footer bg-warning-subtle">
+                                                <form method="POST" action="index.php?page=user_delete">
+                                                    <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getValue('user')['id'];?>
+">
+                                                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
                         </tr>
                     <?php
 }

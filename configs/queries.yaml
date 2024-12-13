@@ -1,5 +1,7 @@
 fetch_all_users: "SELECT * FROM users ORDER BY id DESC"
 fetch_user_by_id: "SELECT * FROM users WHERE id = :id"
 fetch_user_by_username: "SELECT * FROM users WHERE username = :username"
-insert_user: "INSERT INTO users (username, email, password_hash, role) VALUES (:username, :email, :password_hash, :role)"
 fetch_user_by_email: "SELECT * FROM users WHERE email = :email"
+insert_user: "INSERT INTO users (username, email, password_hash, role) VALUES (:username, :email, :password_hash, :role)"
+update_user: "UPDATE users SET username = :username, email = :email, role = :role WHERE id = :id"
+delete_user: "DELETE FROM users WHERE id = :id"

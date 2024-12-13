@@ -24,6 +24,12 @@ class User
         return $this->db->fetchAll($query);
     }
 
+    public function getUserById(int $id): ?array
+    {
+        $query = $this->db->getQuery('fetch_user_by_id');
+        return $this->db->fetchOne($query, ['id' => $id]);
+    }
+
     public function getUserByUsername(string $username): ?array
     {
         $query = $this->db->getQuery('fetch_user_by_username');
@@ -46,4 +52,22 @@ class User
             'role' => $role,
         ]);
     }
+
+    public function updateUser(int $id, string $username, string $email, string $role): void
+    {
+        $query = $this->db->getQuery('update_user');
+        $this->db->execute($query, [
+            'id' => $id,
+            'username' => $username,
+            'email' => $email,
+            'role' => $role,
+        ]);
+    }
+
+    public function deleteUserById(int $id): void
+    {
+        $query = $this->db->getQuery('delete_user');
+        $this->db->execute($query, ['id' => $id]);
+    }
+
 }
