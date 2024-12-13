@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-12 19:05:59
+/* Smarty version 5.4.2, created on 2024-12-13 12:29:02
   from 'file:/home/nicolas/projects/cms/vendor/smarty/smarty/src/debug.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_675afbd7cd2219_53242621',
+  'unifunc' => 'content_675bf04e8b9012_58564118',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_675afbd7cd2219_53242621 (\Smarty\Template $_smarty_tpl) {
+function content_675bf04e8b9012_58564118 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/vendor/smarty/smarty/src';
 $_smarty_tpl->getSmarty()->getRuntime('Capture')->open($_smarty_tpl, '_smarty_debug', 'debug_output', null);?>
     <!DOCTYPE html>

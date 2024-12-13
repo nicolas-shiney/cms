@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /cms/public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
+
+Options +FollowSymLinks
+ErrorDocument 404 "Custom 404 Test"

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.2, created on 2024-12-12 13:02:46
+/* Smarty version 5.4.2, created on 2024-12-13 12:28:57
   from 'file:layout.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.2',
-  'unifunc' => 'content_675aa6b615d104_88947156',
+  'unifunc' => 'content_675bf0499809b1_12115877',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ef8abbbb1c1f7b1972cd25e959d84626509bd4cd' => 
     array (
       0 => 'layout.tpl',
-      1 => 1733938243,
+      1 => 1734078527,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_675aa6b615d104_88947156 (\Smarty\Template $_smarty_tpl) {
+function content_675bf0499809b1_12115877 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -39,7 +39,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 <div class="container">
     <!-- Jumbotron -->
     <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1495199045675aa6b614cbb3_91670588', "jumbotron");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_718158990675bf0499764e6_72954537', "jumbotron");
 ?>
 
     <!-- Navbar -->
@@ -71,7 +71,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <!-- Main Content -->
     <main class="mt-4">
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1136376020675aa6b615c580_91122286', "content");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1824957531675bf04997ecc6_05795622', "content");
 ?>
 
     </main>
@@ -89,7 +89,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1136376020675
 </html>
 <?php }
 /* {block "jumbotron"} */
-class Block_1495199045675aa6b614cbb3_91670588 extends \Smarty\Runtime\Block
+class Block_718158990675bf0499764e6_72954537 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
@@ -112,7 +112,7 @@ $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';
 }
 /* {/block "jumbotron"} */
 /* {block "content"} */
-class Block_1136376020675aa6b615c580_91122286 extends \Smarty\Runtime\Block
+class Block_1824957531675bf04997ecc6_05795622 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/home/nicolas/projects/cms/app/Views/templates';

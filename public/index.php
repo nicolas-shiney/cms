@@ -14,6 +14,9 @@ use App\Services\Database;
 define('BASE_DIR', dirname(__DIR__)); // Base directory of the project
 define('CONFIG_DIR', dirname(__DIR__) . '/configs');
 
+
+
+
 $router = new Router();
 
 $router->add('home', 'HomeController@index');
